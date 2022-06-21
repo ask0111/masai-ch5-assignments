@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Calculator</title>
+    <style>
+        form, button{
+            width: 100%;
+            display: flex;
+            font-size: 20px;
+        }
+        input{
+            width: 48%;
+        }
+        button{
+            width: auto;
+        }
+
+    </style>
+</head>
+<body>
+    <form>
+        <input type="Number" id="one" placeholder="enter 1st Number">
+        <input type="Number" id="two" placeholder="enter 2st Number">
+    </form>
+    <div>
+        <button onclick="add()">Add</button>
+        <button onclick="subtract()">Subtract</button>
+        <button onclick="multiply()">Multiply</button>
+        <button onclick="devide()">Divide</button>
+    </div>
+
+</body>
+<script>
+    
+    function add(){
+        var a =document.querySelector('#one').value;
+        var b =document.querySelector('#two').value;
+
+        alert(`${a+b}`)
+    }
+    function subtract(){
+        var a =document.querySelector('#one').value;
+        var b =document.querySelector('#two').value;
+
+        alert(`${a-b}`)
+    }
+    function multiply(){
+        var a =document.querySelector('#one').value;
+        var b =document.querySelector('#two').value;
+
+        alert(`${a*b}`)
+    }
+    function divide(){
+        var a =document.querySelector('#one').value;
+        var b =document.querySelector('#two').value;
+
+        alert(`${a/b}`)
+    }
+</script>
+</html>
