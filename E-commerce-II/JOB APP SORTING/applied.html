@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Database</title>
+    <link rel="stylesheet" href="commonStyles.css" />
+  </head>
+
+  <body>
+    <div id="links">
+      <div><a href="index.html">Home</a></div>
+      <div><a href="applied.html">Applied Jobs</a></div>
+      <div><a href="bookmark.html">Bookmarks</a></div>
+    </div>
+
+    <main>
+
+      <select name="" id="selectByName">
+        <option value="sortByNames">Sort By Name</option>
+        <option value="ascending">Ascending</option>
+        <option value="descending">Descending</option>
+      </select>
+      <select name="" id="selectBySalary">
+        <option value="sortBySalary">Sort By Salary</option>
+        <option value="descending">High to Low</option>
+        <option value="ascending">Low to High</option>
+      </select>
+      <select name="" id="selectByRole">
+        <option value="sortByRole">Sort By Role</option>
+        <option value="fsd">FSD</option>
+        <option value="frontend">Frontend</option>
+        <option value="backend">Backend</option>
+      </select>
+
+
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Job applied</th>
+            <th>Salary expected</th>
+            <th>Add to bookmark</th>
+          </tr>
+        </thead>
+        <tbody id="body">
+          <!-- Append your output to tbody -->
+        </tbody>
+      </table>
+    </main>
+  </body>
+  <script>
+     var userFav = JSON.parse(localStorage.getItem('favourites')) || [];
+    var userData1 = JSON.parse(localStorage.getItem('contectList'));
+    var userData2 = JSON.parse(localStorage.getItem('contectList'));
+    function display(userData){
+      document.querySelector('#body').innerHTML ="";
+
+      userData.forEach(element => {
+        
+        var box = document.createElement('tr');
+        var tname = document.createElement('td');
+        tname.innerText = element.name;
+        var tmobile = document.createElement('td');
+        tmobile.innerText = element.email; 
+        var ttype = document.createElement('td');
+        ttype.innerText = element.job; 
+        var tsalary = document.createElement('td');
+        tsalary.innerText = element.salary; 
+        var tfav = document.createElement('td');
+        tfav.innerText = 'Bookmark'; 
+        tfav.style.cursor = 'pointer';
+        tfav.style.color = 'red';
+        box.append(tname, tmobile, ttype, tsalary, tfav);
+        
+        document.querySelector('#body').append(box);
+        
+        tfav.addEventListener('click', ()=>{
+          // document.querySelector('table').append(box);
+          tfav.style.color = 'blue';
+          userFav.push(element);
+            localStorage.setItem('favourites', JSON.stringify(userFav))
+            event.preventDefault();
+        })
+      });
+    }
+
+        var selectByName = document.querySelector('#selectByName');
+        selectByName.addEventListener('click', (e)=>{
+          e.preventDefault();
+          console.log(userData2);
+          if(selectByName.value == "ascending"){
+            userData2.sort((a, b)=>{
+              return a.name-b.name;
+            })
+          }else{
+            userData2.sort((a, b)=>{
+              return b.name-a.name;
+            })
+          }
+          display(userData2);
+        })
+
+        var sortBySalary = document.querySelector('#sortBysalary');
+        sortBySalary.addEventListener('click', (e)=>{
+          e.preventDefault();
+          console.log(userData2)
+          if(selectByName.value == "ascending"){
+            userData2.sort((a, b)=>{
+              return a.salary-b.salary;
+            })
+          }else{
+            userData2.sort((a, b)=>{
+              return b.salary-a.salary;
+            })
+          }
+          display(userData2);
+        })
+
+      
+        var sortByRole = document.querySelector('#sortByRole');
+        sortBySalary.addEventListener('click', ()=>{
+          e.preventDefault();
+          if(selectByName.value == "fsd"){
+            userData2.filter((ele)=>{
+              return ;
+            })
+          }else{
+            userData2.filter((ele)=>{
+            })
+          }
+          display(userData2);
+        })
+
+        userData2.sort((a, b)=>{
+          return a-b;
+        })
+
+    //you need to code here
+
+
+
+
+  </script>
+</html>

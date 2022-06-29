@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>loginPage</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .login-container{
+            width: 100%;
+            background-color: blue;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        .login-box{
+            width: 30%;
+            margin: auto;
+            height: 80vh;
+            background-color: white;
+
+            font-size: 20px;
+            border-radius: 10px;
+        }
+        form{
+            width: 80%;
+        }
+        input{
+            width: 100%;
+            display: block;
+            margin: 40px;
+            font-size: 20px;
+            border: none;
+            border-bottom: 1px solid gray;
+        }
+        h1, p{
+            text-align: center;
+            padding: 10px;
+        }
+        h1{
+            
+            padding-top: 70px;
+        }
+        .login-box div{
+            padding-bottom: 70px;
+            
+        }
+        input:last-child{
+            padding: 20px;
+            background-color: blue;
+            color: white;
+        }
+        a{
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <h1>Login</h1>
+            <form action="">
+                <input type="email" placeholder="Email">
+                <input type="password" placeholder="Password">
+                <input type="submit" value="Login">
+            </form>
+            <div>
+
+                <p>Forgot <a href="">Password</a> ?</p>
+                <p>Don't have an account? <a href="">Sign up</a></p>
+            </div>
+        </div>
+    </div>
+
+
+    
+</body>
+</html>

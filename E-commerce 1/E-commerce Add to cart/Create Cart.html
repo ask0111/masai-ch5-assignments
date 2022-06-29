@@ -1,0 +1,152 @@
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADD CARTS</title>
+    <style>
+        .box{
+            width: 400px;
+            position: fixed;
+            top: 20px;
+            padding: 20px;
+            right: 90px;
+            box-shadow: inset 0 0 20px 2px rgb(219, 214, 214);
+        }
+    </style>
+
+
+
+
+   
+        <style>
+            .navbar , .right{
+                width: 10%;
+                background-color: aquamarine;
+                height: 100px;
+                font-size: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+            a{
+                margin: 0 30px;
+                text-decoration: none;
+            }
+            a:hover{
+                color: goldenrod;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="navBar">
+            <div>
+                <a href="singnUp.html">Sign Up</a>
+                <a href="login.html">Login</a>
+                <a href="mens.html">Mens</a>
+                <a href="womens.html">Womens</a>
+            </div>
+    
+            <div class="right"> 
+                <a href="Create Cart.html">Carts</a>
+            </div>
+        </div>
+        
+    <!-- ------------ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="box">
+        <h3>Total Carts - 0</h3>
+        <form action="">
+            <input type="text" name="" id="promo">
+            <input id="promoBtn" type="submit" value="Apply Promo">
+        </form>
+        <h1 style="margin-bottom: 0;">Total Price - 0</h1>
+        <p></p>
+    </div>
+    <div class="container" style="width: 600px;"></div>
+
+</body>
+<script>
+    var Carts = JSON.parse(localStorage.getItem('menUserCarts'));
+    document.querySelector('div h3').innerText = `Total Carts - ${Carts.length} `;
+
+    var totalPrice = 0;
+    Carts.forEach(function (el, i) {
+        var box = document.createElement("div");
+        var img = document.createElement('img');
+        img.src = el.image_url;
+
+        var name = document.createElement('h1');
+        name.innerText = el.name;
+
+        var price = document.createElement('h1');
+        price.innerText = '$' + el.price;
+
+        var btn = document.createElement('button');
+        btn.innerText = "remove to Cart";
+        btn.style.fontSize = '20px'
+        box.append(img, name, price, btn);
+        totalPrice += Carts[i].price;
+        btn.addEventListener('click', (e)=>{
+            e.preventDefault();
+            box.remove(img, name, price, btn);
+            Carts = Carts.filter((ele)=>{
+                return ele !== el;
+            })
+            localStorage.setItem('menUserCarts', JSON.stringify(Carts))
+            totalPrice -= Carts[i].price;
+            document.querySelector('div h1').innerText = `Total Price - ${totalPrice} `;
+        })
+
+        box.style.boxShadow = '0 0 2px 10px rgba(110, 110, 110, 0.9)'
+        box.style.padding = "20px"
+        document.querySelector('.container').append(box);
+
+
+
+    });
+
+
+    document.querySelector('div h1').innerText = `Total Price - ${totalPrice} `;
+    promoBtn.addEventListener('click', () => {
+        event.preventDefault();
+        var code = document.querySelector('#promo').value;
+        if(code == 'masai30'){
+            document.querySelector('p').innerText = 'With 30% Descount';
+            document.querySelector('p').style.fontSize = '16px'
+            document.querySelector('p').style.color = 'green'
+            document.querySelector('p').style.marginTop = '0'
+            document.querySelector('div h1').innerText = `Total Price - ${(totalPrice*(3/10)).toFixed(2)} `;
+
+
+
+        }else{
+            alert('Invalid Promo Code')
+        }
+    })
+
+</script>
+
+</html>

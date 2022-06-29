@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Database</title>
+    <link rel="stylesheet" href="commonStyles.css" />
+  </head>
+
+  <body>
+    <div id="links">
+      <div><a href="index.html">Home</a></div>
+      <div><a href="applied.html">Applied Jobs</a></div>
+      <div><a href="bookmark.html">Bookmarks</a></div>
+    </div>
+
+    <main>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Job applied</th>
+            <th>Salary expected</th>
+            <th>Add to bookmark</th>
+          </tr>
+        </thead>
+        <tbody id="body">
+          <!-- Append your output to tbody -->
+        </tbody>
+      </table>
+    </main>
+  </body>
+  <script>
+     var userFav = JSON.parse(localStorage.getItem('favourites')) || [];
+    var userData = JSON.parse(localStorage.getItem('contectList'));
+    userData.forEach(element => {
+
+        var box = document.createElement('tr');
+        var tname = document.createElement('td');
+        tname.innerText = element.name;
+        var tmobile = document.createElement('td');
+        tmobile.innerText = element.email; 
+        var ttype = document.createElement('td');
+        ttype.innerText = element.job; 
+        var tsalary = document.createElement('td');
+        tsalary.innerText = element.salary; 
+        var tfav = document.createElement('td');
+        tfav.innerText = 'Bookmark'; 
+        tfav.style.cursor = 'pointer';
+        tfav.style.color = 'red';
+        box.append(tname, tmobile, ttype, tsalary, tfav);
+        
+        document.querySelector('#body').append(box);
+        
+        tfav.addEventListener('click', ()=>{
+          // document.querySelector('table').append(box);
+          tfav.style.color = 'blue';
+          userFav.push(element);
+            localStorage.setItem('favourites', JSON.stringify(userFav))
+            event.preventDefault();
+        })
+
+    });
+    //you need to code here
+  </script>
+</html>

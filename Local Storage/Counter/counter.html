@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <title>LOCAL STORAGE COUNTER</title>
+    
+</head>
+<body>
+    <h1>0</h1>
+    <button id="decrease">Decrease</button>
+    <button id="increase">Increase</button>
+    
+</body>
+<script>
+    document.querySelector("body").style.fontSize = "25px";
+
+    // initialize count
+    var count;
+    if(localStorage.getItem("counter") === null){
+        count = 0;
+    }else{
+        count = localStorage.getItem("counter");
+    }
+    document.querySelector("h1").innerText = count
+
+    // select the btns
+    var increaseBtn = document.querySelector("#increase");
+    var decreaseBtn = document.querySelector("#decrease");
+
+    // events
+    increaseBtn.addEventListener('click', ()=>{
+        count++;
+        document.querySelector("h1").innerText = count;
+        localStorage.setItem("counter", count);
+    });
+    decreaseBtn.addEventListener('click', ()=>{
+        count--;
+        document.querySelector("h1").innerText = count;
+        localStorage.setItem("counter", count);
+    });
+</script>
+</html>
